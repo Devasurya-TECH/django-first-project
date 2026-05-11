@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class Doctor(models.Model):
@@ -31,6 +32,21 @@ class Doctor(models.Model):
     def __str__(self):
 
         return f"{self.name} - {self.specialty}"
+
+    def save(self, *args, **kwargs):
+
+        super().save(*args, **kwargs)
+
+        if self.image and self.image.path:
+            image_path = self.image.path
+
+            with Image.open(image_path) as img:
+                if img.mode in ("RGBA", "P"):
+                    img = img.convert("RGB")
+
+                # Keep doctor photos web-friendly instead of serving large camera originals.
+                img.thumbnail((900, 900))
+                img.save(image_path, format="JPEG", quality=82, optimize=True)
 
 class Appointment(models.Model):
 

@@ -47,9 +47,9 @@
             <div class="col-md-4">
                 <div class="doctor-card">
                     {% if doctor.image %}
-                    <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
+                    <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" loading="lazy" decoding="async">
                     {% else %}
-                    <img src="{{ doctor.image_url }}" alt="{{ doctor.name }}">
+                    <img src="{{ doctor.image_url }}" alt="{{ doctor.name }}" loading="lazy" decoding="async">
                     {% endif %}
                     <div class="doctor-content">
                         <h3>{{ doctor.name }}</h3>

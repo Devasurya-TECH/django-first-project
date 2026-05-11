@@ -85,7 +85,10 @@
                             <td>{{ item.appointment_time }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{% url 'update' item.id %}" class="action-btn edit-btn">Edit</a>
-                                <a href="{% url 'delete' item.id %}" class="action-btn delete-btn">Delete</a>
+                                <form method="POST" action="{% url 'delete' item.id %}" class="m-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="action-btn delete-btn">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}

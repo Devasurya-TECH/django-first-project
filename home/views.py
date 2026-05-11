@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Appointment, Doctor
 
 
@@ -69,7 +69,7 @@ def booking(request):
 
 def appointments(request):
 
-    data = Appointment.objects.all()
+    data = Appointment.objects.order_by("-created_at")
 
     return render(
 
@@ -86,7 +86,7 @@ def appointments(request):
 
 def update(request, id):
 
-    appointment = Appointment.objects.get(id=id)
+    appointment = get_object_or_404(Appointment, id=id)
 
     if request.method == "POST":
 
@@ -123,9 +123,10 @@ def update(request, id):
 
 def delete(request, id):
 
-    appointment = Appointment.objects.get(id=id)
+    appointment = get_object_or_404(Appointment, id=id)
 
-    appointment.delete()
+    if request.method == "POST":
+        appointment.delete()
 
     return redirect('appointments')
 

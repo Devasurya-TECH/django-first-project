@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}About | MediCare Pro{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-card{
+        background:#111827;
+        border:1px solid rgba(255,255,255,0.06);
+        border-radius:28px;
+        padding:40px;
+        height:100%;
+    }
+
+    .about-card p,
+    .about-lead{
+        color:#94a3b8;
+        line-height:1.9;
+    }
+
+    .about-highlight{
+        background:linear-gradient(to right,#8b5cf6,#06b6d4);
+        color:white;
+        border-radius:28px;
+        padding:40px;
+        height:100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container">
+        <div class="section-heading">
+            <h1>About MediCare Pro</h1>
+            <p class="about-lead">
+                A modern healthcare platform focused on fast appointments, trusted specialists, and reliable patient support.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="about-card">
+                    <h3 class="mb-3">Care With Clarity</h3>
+                    <p>
+                        MediCare Pro brings together doctors, services, and booking in one clean experience so patients can reach the right care without delay.
+                    </p>
+                    <p>
+                        The platform is designed to make healthcare navigation simple, responsive, and available across every page through a shared layout.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="about-highlight">
+                    <h3 class="mb-3">Why Patients Choose Us</h3>
+                    <p class="mb-2">Expert doctors across key specialties.</p>
+                    <p class="mb-2">Fast online appointment scheduling.</p>
+                    <p class="mb-2">Clear access to services and support.</p>
+                    <p class="mb-0">Consistent patient-first digital experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

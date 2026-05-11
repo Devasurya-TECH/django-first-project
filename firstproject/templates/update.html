@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Appointment | MediCare Pro{% endblock %}
+
+{% block extra_css %}
+<style>
+    .update-section{
+        padding:80px 0;
+    }
+
+    .update-card{
+        background:#111827;
+        border:1px solid rgba(255,255,255,0.06);
+        border-radius:28px;
+        padding:36px;
+        max-width:900px;
+        margin:0 auto;
+    }
+
+    .form-control,
+    .form-select{
+        background:#1e293b;
+        border:none;
+        height:56px;
+        border-radius:16px;
+        color:white;
+        padding-left:18px;
+        margin-bottom:20px;
+    }
+
+    textarea.form-control{
+        height:140px;
+        padding-top:14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus{
+        background:#1e293b;
+        color:white;
+        box-shadow:none;
+        border:1px solid #8b5cf6;
+    }
+
+    .save-btn{
+        width:100%;
+        height:56px;
+        border:none;
+        border-radius:16px;
+        background:linear-gradient(to right,#8b5cf6,#06b6d4);
+        color:white;
+        font-weight:600;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="update-section">
+    <div class="container">
+        <div class="section-heading">
+            <h1>Update Appointment</h1>
+            <p>Edit patient and schedule details.</p>
+        </div>
+
+        <div class="update-card">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="patient_name" class="form-control" value="{{ appointment.patient_name }}" placeholder="Full Name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="email" class="form-control" value="{{ appointment.email }}" placeholder="Email Address">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="phone" class="form-control" value="{{ appointment.phone }}" placeholder="Phone Number">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="department" class="form-control" value="{{ appointment.department }}" placeholder="Department">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="date" name="appointment_date" class="form-control" value="{{ appointment.appointment_date|date:'Y-m-d' }}">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="time" name="appointment_time" class="form-control" value="{{ appointment.appointment_time|time:'H:i' }}">
+                    </div>
+                </div>
+
+                <textarea name="message" class="form-control" placeholder="Describe your symptoms or problem">{{ appointment.message }}</textarea>
+
+                <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
